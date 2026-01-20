@@ -1,0 +1,144 @@
+/* I reset it generaly here */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+    background-color: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: #242538;
+    width: 100%;
+    max-width: 380px; 
+    padding: 24px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Display Section */
+.display-container {
+    background-color: #31355b;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+#display {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    text-align: right;
+    outline: none;
+}
+
+/* Buttons Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.btn {
+    aspect-ratio: 1/1; 
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.2s;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* this is where i specified all my colores */
+.number, .backspace {
+    background-color: #3b3d58;
+}
+
+/* .backspace {
+    background-color: #3b3d58; 
+    color: #ffffff;            
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;         
+} */
+
+.btn.backspace {
+    color: #ffffff !important; 
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orange {
+    background-color: #ff9f0a;
+}
+
+/* this is where i designed the equal-sign = becos it different from the other bnt */
+.equal-sign {
+    background-color: #a5a5a5;
+    width: 100%;
+    color: #1a1a2e;
+    grid-column: span 2; 
+    aspect-ratio: auto;
+    border-radius: 30px;
+    font-size: 2rem;
+}
+
+/* This is  the hover effect*/
+.btn:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+.btn:hover {
+    filter: brightness(1.2);
+}
+
+.history{
+   margin-top: -54px;
+   margin-left: -17rem; 
+   aspect-ratio: 1/1; 
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+    color: #ffffff;
+    transition: transform 0.1s ease, background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsiveness for mobile */
+@media (max-width: 400px) {
+    .calculator {
+        padding: 16px;
+    }
+    .buttons {
+        gap: 8px;
+    }
+    .btn {
+        font-size: 1rem;
+    }
+}
