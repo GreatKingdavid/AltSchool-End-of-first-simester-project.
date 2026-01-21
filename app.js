@@ -1,13 +1,30 @@
 //tergeted the the display
 const display = document.getElementById("display");
 let isResultShown = false;
+let isHistoryShown = false;
 let history = [];
+
+
+const adjustFontSize = () => {
+  const length = display.value.length;
+  
+  if (length > 14) {
+    display.style.fontSize = "1.2rem";
+  } else if (length > 10) {
+    display.style.fontSize = "1.8rem";
+  } else if (length > 7) {
+    display.style.fontSize = "2.2rem";
+  } else {
+    display.style.fontSize = "2.5rem"; // Original size
+  }
+};
 
 //this is so that more than two numbers can be displayed at the same time
 const appendToDisplay = (inputs) => {
-  if (isResultShown && !isNaN(inputs)) {
+  if ((isResultShown || isHistoryShown) && !isNaN(inputs)) {
     display.value = inputs;
     isResultShown = false;
+    isHistoryShown = false;
     return;
   }
 
@@ -29,15 +46,18 @@ const appendToDisplay = (inputs) => {
   }
 
   display.value += inputs;
-  isResultShown = false;
+  adjustFontSize()
+  // isResultShown = false;
+  isHistoryShown = false;
 };
 
 //this clears all the display value and make it an empty string if it is a result and just removes the last nummber if it's not a result
 const backspace = () => {
-  if (isResultShown) {
+  if (isResultShown || isHistoryShown) {
     clearDisplay();
   } else {
     display.value = display.value.slice(0, -1);
+    adjustFontSize()
   }
 };
 
@@ -45,6 +65,8 @@ const backspace = () => {
 const clearDisplay = () => {
   display.value = "";
   isResultShown = false;
+  isHistoryShown = false;
+  adjustFontSize()
 };
 
 //this function calculate what ever is in the display area
@@ -52,9 +74,11 @@ const calculate = () => {
   if (display.value !== "") {
     try {
       //history.push(display.value);
-      displayHistory()
+      displayHistory();
       display.value = String(eval(display.value));
+      adjustFontSize()
       isResultShown = true;
+      isHistoryShown = false;
     } catch (error) {
       display.value = "Error";
       isResultShown = true;
@@ -63,7 +87,15 @@ const calculate = () => {
 };
 
 const displayHistory = () => {
- history.push(display.value);
+  if (display.value !== "" && display.value !== "Error") {
+    history.push(display.value);
+  }
 };
 
-//displayHistory()
+const showHistoryOnScreen = () => {
+  if (history.length > 0) {
+    display.value = history[history.length - 2]; 
+    isHistoryShown = true;  
+    isResultShown = false;
+  }
+};
