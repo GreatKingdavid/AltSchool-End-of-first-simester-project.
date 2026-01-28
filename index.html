@@ -62,7 +62,7 @@
                     <button type="button" class="btn number"
                         onclick="appendToDisplay('0')">0</button>
 
-                    <button type="button" class="btn operator backspace"
+                    <button type="button" class="btn number backspace"
                         onclick="backspace()">
                         <svg width="24" height="24" viewBox="0 0 24 24"
                             fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +71,10 @@
                         </svg>
                     </button>
 
-                    <button type="button" class="btn equal-sign" id="equal"
+                    <button type="button" class="btn operator orange backspace"
+                        onclick="clearDisplay()">C</button>
+
+                    <button type="button" class="btn operator backspace" id="equal"
                         onclick="calculate()">=</button>
                 </div>
             </form>
