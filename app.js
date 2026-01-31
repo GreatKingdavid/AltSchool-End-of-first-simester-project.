@@ -66,7 +66,8 @@ const calculate = () => {
     try {
       displayHistory();
       // i use String here so that the result can be sliced later if needed
-      display.value = String(eval(display.value));
+      displayValue = display.value.replace(/×/g, '*').replace(/÷/g, '/');
+      display.value = String(eval(displayValue));
       isResultShown = true;
       isHistoryShown = false;
       adjustFontSize();
