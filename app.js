@@ -110,3 +110,40 @@ const adjustFontSize = () => {
     display.style.fontSize = "2.5rem";
   }
 };
+
+// Listen for keyboard input
+window.addEventListener("keydown", (e) => {
+  const key = e.key;
+
+  // Numbers and most Operators
+  if (!isNaN(key) || ["+", "-", "%", ".", "^"].includes(key)) {
+    appendToDisplay(key);
+  }
+  
+  // Mapping multiplication
+  if (key === "*") {
+    appendToDisplay("×");
+  }
+
+  // Mapping division
+  if (key === "/") {
+    e.preventDefault(); 
+    appendToDisplay("÷");
+  }
+  
+  // Enter key for calculate
+  if (key === "Enter") {
+    e.preventDefault(); 
+    calculate();
+  }
+
+  // Backspace key
+  if (key === "Backspace") {
+    backspace();
+  }
+
+  // Escape key to clear
+  if (key === "Escape") {
+    clearDisplay();
+  }
+});
