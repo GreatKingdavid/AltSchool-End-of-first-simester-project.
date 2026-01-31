@@ -6,7 +6,8 @@ let history = [];
 
 //this is so that more than two numbers can be displayed at the same time
 const appendToDisplay = (inputs) => {
-  const operators = ["+", "-", "*", "/", "%"];
+  // added the visual operators and exponent symbols to this list
+  const operators = ["+", "-", "*", "/", "%", "×", "÷", "^", "**"];
 
   // here i check if it is a result and i want to add an operation to it
   if (isResultShown && operators.includes(inputs)) {
@@ -25,7 +26,8 @@ const appendToDisplay = (inputs) => {
 
   // Prevent double decimals in one number
   if (inputs === ".") {
-    const parts = display.value.split(/[\+\-\*\/\%]/);
+    // added visual operators to the split logic
+    const parts = display.value.split(/[\+\-\*\/\%\×\÷\^]/);
     const lastNumber = parts[parts.length - 1];
     if (lastNumber.includes(".")) return;
   }
@@ -66,7 +68,7 @@ const calculate = () => {
     try {
       displayHistory();
       // i use String here so that the result can be sliced later if needed
-      displayValue = display.value.replace(/×/g, '*').replace(/÷/g, '/').replace(/\^/g, '**');
+      let displayValue = display.value.replace(/×/g, '*').replace(/÷/g, '/').replace(/\^/g, '**');
       display.value = String(eval(displayValue));
       isResultShown = true;
       isHistoryShown = false;
